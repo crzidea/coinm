@@ -20,6 +20,7 @@ fetch(`${API_ROOT}/coinm.json`)
     bot.allocated = bot.allocated.toFixed(2)
     bot.available = bot.available.toFixed(2)
     bot.total     = bot.total.toFixed(2)
+    bot.statistics.orders = bot.statistics.orders.reverse()
     function shiftField(field) {
       bot[field] =
         Number(bot.statistics.info.funds[field][bot.options.token])
