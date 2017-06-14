@@ -25,7 +25,7 @@ fetch(`${API_ROOT}/coinm.json`)
     for (const order of bot.statistics.orders) {
       order.push('sell' === order[0])
       order[0] = order[0].toUpperCase()
-      order[4] = ((date - (new Date(order[4]))) / 3600000).toFixed(1) + 'h'
+      order[4] = ((date.valueOf() - (new Date(order[4]).valueOf())) / 3600000).toFixed(1) + 'h'
     }
     function shiftField(field) {
       bot[field] =
