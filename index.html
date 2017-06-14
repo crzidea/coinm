@@ -1,19 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style type="text/css" media="all">
+      #container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .summary .card-block {
+        padding-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 0.7rem;
+      }
+    </style>
+
   </head>
   <body>
-    <h1>Hello, world!</h1>
+
+    <div id="container" class="container"></div>
+
+    <script id="entry-template" type="text/template">
+
+      <div role="tablist" aria-multiselectable="true">
+
+        <div class="card summary">
+
+					<div class="card-header" role="tab">
+						<h6 class="mb-0">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Summary
+							</a>
+              <span class="badge badge-default float-right">{{date}}</span>
+						</h6>
+					</div>
+
+					<div class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+						<div class="card-block">
+							<table class="table">
+								<thead>
+									<tr>
+										<th></th>
+										<th>cny</th>
+										{{#each bots}}
+										<th>{{options.token}}</th>
+										{{/each}}
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr>
+										<th scope="row">freezed</th>
+                    <td>{{leader.statistics.info.funds.freezed.cny}}</td>
+										{{#each bots}}
+                    <td>{{freezed}}</td>
+										{{/each}}
+									</tr>
+
+									<tr>
+										<th scope="row">free</th>
+                    <td>{{leader.statistics.info.funds.free.cny}}</td>
+										{{#each bots}}
+                    <td>{{free}}</td>
+										{{/each}}
+									</tr>
+
+									<tr>
+										<th scope="row">reserved</th>
+                    <td></td>
+										{{#each bots}}
+                    <td>{{reserved}}</td>
+										{{/each}}
+									</tr>
+
+									<tr>
+										<th scope="row">allocated</th>
+                    <td></td>
+										{{#each bots}}
+                    <td>{{allocated}}</td>
+										{{/each}}
+									</tr>
+
+									<tr>
+										<th scope="row">available</th>
+                    <td></td>
+										{{#each bots}}
+                    <td>{{available}}</td>
+										{{/each}}
+									</tr>
+
+									<tr>
+										<th scope="row">total</th>
+                    <td>{{leader.statistics.info.funds.asset.total}}</td>
+										{{#each bots}}
+                    <td>{{total}}</td>
+										{{/each}}
+									</tr>
+
+									<tr>
+										<th scope="row">prediction</th>
+                    <td>{{prediction}}</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+
+        </div>
+
+        {{#each bots}}
+        <div class="card">
+
+					<div class="card-header" role="tab">
+						<h6 class="mb-0">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                {{options.token}}
+							</a>
+						</h6>
+					</div>
+
+					<div class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+						<div class="card-block">
+							<table class="table">
+                <tbody>
+                  {{#each statistics.orders}}
+									<tr>
+                    <td>{{[0]}}</td>
+                    <td>{{[1]}}</td>
+                    <td>{{[2]}}</td>
+                    <td>{{[3]}}</td>
+									</tr>
+                  {{/each}}
+                </tbody>
+							</table>
+						</div>
+					</div>
+
+        </div>
+        {{/each}}
+
+      </div>
+
+
+    </script>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" integrity="sha256-0JaDbGZRXlzkFbV8Xi8ZhH/zZ6QQM0Y3dCkYZ7JYq34=" crossorigin="anonymous"></script>
+    <script src="./main.js"></script>
   </body>
 </html>
