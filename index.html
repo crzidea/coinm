@@ -38,14 +38,14 @@
 
 					<div class="card-header" role="tab">
 						<h6 class="mb-0">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							<a data-toggle="collapse" data-parent="#accordion" href="#summary" aria-expanded="true" aria-controls="collapseOne">
                 Summary
 							</a>
               <span class="badge badge-default float-right">{{date}}</span>
 						</h6>
 					</div>
 
-					<div class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+					<div id="summary" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
 						<div class="card-block">
 							<table class="table">
 								<thead>
@@ -125,22 +125,26 @@
 
 					<div class="card-header" role="tab">
 						<h6 class="mb-0">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <a data-toggle="collapse" data-parent="#accordion" href="#{{options.token}}" aria-expanded="true" aria-controls="collapseOne">
                 {{options.token}}
 							</a>
+              <span class="badge badge-info float-right ml-2 w-25">{{statistics.orders.length}} orders</span>
+              <span class="badge badge-info float-right ml-1">@{{statistics.rankRate}}</span>
+              <span class="badge badge-info float-right ml-1">{{statistics.ticker.last}}</span>
 						</h6>
 					</div>
 
-					<div class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+					<div id="{{options.token}}" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
 						<div class="card-block">
 							<table class="table">
                 <tbody>
                   {{#each statistics.orders}}
 									<tr>
-                    <td>{{[0]}}</td>
+                    <td><span class="badge badge-{{#if [5]}}danger{{^}}success{{/if}}">{{[0]}}</span></td>
                     <td>{{[1]}}</td>
                     <td>{{[2]}}</td>
                     <td>{{[3]}}</td>
+                    <td>{{[4]}}</td>
 									</tr>
                   {{/each}}
                 </tbody>
